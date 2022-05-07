@@ -1,11 +1,8 @@
-`include "iolib.v"
-`include "fifo.v"
-
 `timescale 1ns/1ps
 
 module FIFO_TOP( 
 input               CLK,
-input               RST,
+input               RST_N,
 input [7:0]   DIN,
 input               WE_N,
 input               OE_N,
@@ -31,7 +28,7 @@ I1025_NS CLK_PAD (
 );
 
 I1025_NS RST_PAD (
-    .PADIO  (RST),
+    .PADIO  (RST_N),
     .DOUT   (rst_i),
     .R_EN   (1'b1) 
 );
@@ -86,7 +83,7 @@ endgenerate
 
 fifo comp (
     .clk    (clk_i),
-    .rst    (rst_i),
+    .rst_n    (rst_i),
     .din    (din_i),
     .we_n   (we_n_i),
     .oe_n   (oe_n_i),
