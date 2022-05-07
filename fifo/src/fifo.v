@@ -67,6 +67,11 @@ always @(*) begin
     end
 end
 
+always @(*) begin
+    if (we_n && !oe_n && !empty || !we_n && oe_n && !full) cs_n <= 0;
+    else cs_n <= 1;
+end
+
 SRAM1RW1024x8 r1 (
 . CE ( clk ),
 . WEB ( we_n ),

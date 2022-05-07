@@ -51,8 +51,9 @@ module tb_fifo;
     end
 
     initial begin
-        $dumpfile("tb_fifo.vcd");
-        $dumpvars(0, tb_fifo);
+        //$dumpfile("tb_fifo.vcd");
+        //$dumpvars(0, tb_fifo);
+        $vcdpluson;
     end
     
 endmodule
