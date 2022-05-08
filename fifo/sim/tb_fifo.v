@@ -27,7 +27,7 @@ module tb_fifo;
         .EMPTY  (tb_empty)
     );
 
-    localparam CLK_PERIOD = 10;
+    localparam CLK_PERIOD = 100;
     
     initial begin
         tb_clk = 0;
