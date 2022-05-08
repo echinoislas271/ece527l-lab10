@@ -11,9 +11,9 @@ set NETLIST "$SYN/netlist"
 set_svf $GUIDE/ram_test.svf
 
 #read in the entire design
-read_verilog $SRC/TOP_FIFO.v
 read_verilog $SRC/fifo.v
 read_verilog $SRC/iolib.v
+read_verilog $SRC/TOP_FIFO.v
 
 current_design TOP_FIFO
 

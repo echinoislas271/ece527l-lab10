@@ -1,6 +1,6 @@
 `timescale 1ns/1ps
 
-module FIFO_TOP( 
+module TOP_FIFO( 
 input               CLK,
 input               RST_N,
 input [7:0]   DIN,
