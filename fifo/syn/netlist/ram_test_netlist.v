@@ -3,7 +3,7 @@
 // Version   : O-2018.06-SP1
 // Date      : Sat May  7 20:39:37 2022
 /////////////////////////////////////////////////////////////
-
+`timescale 1ns/1ps
 
 module I1025_NS_0 ( PADIO, VSS, VDDIO, VDD, R_EN, VSSIO, DOUT );
   input PADIO, R_EN;
