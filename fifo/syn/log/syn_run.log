@@ -1,0 +1,274 @@
+
+                           Design Compiler Graphical 
+                                 DC Ultra (TM)
+                                  DFTMAX (TM)
+                              Power Compiler (TM)
+                                 DesignWare (R)
+                                 DC Expert (TM)
+                               Design Vision (TM)
+                               HDL Compiler (TM)
+                               VHDL Compiler (TM)
+                                  DFT Compiler
+                               Design Compiler(R)
+
+               Version O-2018.06-SP1 for linux64 - Jul 19, 2018 
+
+                    Copyright (c) 1988 - 2018 Synopsys, Inc.
+   This software and the associated documentation are proprietary to Synopsys,
+ Inc. This software may only be used in accordance with the terms and conditions
+ of a written license agreement with Synopsys, Inc. All other use, reproduction,
+            or distribution of this software is strictly prohibited.
+Initializing...
+set WDIR "/home/users5/ec385912/ECE527LSP22/ece527l-lab10/fifo"
+/home/users5/ec385912/ECE527LSP22/ece527l-lab10/fifo
+set SYN     "$WDIR/syn"
+/home/users5/ec385912/ECE527LSP22/ece527l-lab10/fifo/syn
+set SRC     "$WDIR/src"
+/home/users5/ec385912/ECE527LSP22/ece527l-lab10/fifo/src
+set GUIDE   "$SYN/guidance"
+/home/users5/ec385912/ECE527LSP22/ece527l-lab10/fifo/syn/guidance
+set LOG     "$SYN/log"
+/home/users5/ec385912/ECE527LSP22/ece527l-lab10/fifo/syn/log
+set MAPPED  "$SYN/mapped"
+/home/users5/ec385912/ECE527LSP22/ece527l-lab10/fifo/syn/mapped
+set NETLIST "$SYN/netlist"
+/home/users5/ec385912/ECE527LSP22/ece527l-lab10/fifo/syn/netlist
+#specify SVF output file
+set_svf $GUIDE/ram_test.svf
+1
+#read in the entire design
+read_verilog $SRC/fifo.v
+Loading db file '/opt/ECE_Lib/SAED32_EDK/lib/stdcell_rvt/db_ccs/saed32rvt_tt1p05v25c.db'
+Information: Using CCS timing libraries. (TIM-024)
+Loading db file '/opt/synopsys/syn/O-2018.06-SP1/libraries/syn/gtech.db'
+Loading db file '/opt/synopsys/syn/O-2018.06-SP1/libraries/syn/standard.sldb'
+  Loading link library 'saed32rvt_tt1p05v25c'
+  Loading link library 'gtech'
+Loading verilog file '/home/users5/ec385912/ECE527LSP22/ece527l-lab10/fifo/src/fifo.v'
+Detecting input file type automatically (-rtl or -netlist).
+Reading with Presto HDL Compiler (equivalent to -rtl option).
+Running PRESTO HDLC
+Compiling source file /home/users5/ec385912/ECE527LSP22/ece527l-lab10/fifo/src/fifo.v
+Warning:  /home/users5/ec385912/ECE527LSP22/ece527l-lab10/fifo/src/fifo.v:28: signed to unsigned assignment occurs. (VER-318)
+Warning:  /home/users5/ec385912/ECE527LSP22/ece527l-lab10/fifo/src/fifo.v:31: signed to unsigned conversion occurs. (VER-318)
+
+Inferred memory devices in process
+	in routine fifo line 34 in file
+		'/home/users5/ec385912/ECE527LSP22/ece527l-lab10/fifo/src/fifo.v'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     wr_ptr_reg      | Flip-flop |  10   |  Y  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine fifo line 49 in file
+		'/home/users5/ec385912/ECE527LSP22/ece527l-lab10/fifo/src/fifo.v'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     rd_ptr_reg      | Flip-flop |  10   |  Y  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine fifo line 63 in file
+		'/home/users5/ec385912/ECE527LSP22/ece527l-lab10/fifo/src/fifo.v'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|      count_reg      | Flip-flop |  11   |  Y  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+Current design is now '/home/users5/ec385912/ECE527LSP22/ece527l-lab10/fifo/src/fifo.db:fifo'
+Loaded 1 design.
+Current design is 'fifo'.
+fifo
+read_verilog $SRC/iolib.v
+Loading verilog file '/home/users5/ec385912/ECE527LSP22/ece527l-lab10/fifo/src/iolib.v'
+Detecting input file type automatically (-rtl or -netlist).
+Reading with Presto HDL Compiler (equivalent to -rtl option).
+Running PRESTO HDLC
+Compiling source file /home/users5/ec385912/ECE527LSP22/ece527l-lab10/fifo/src/iolib.v
+Warning:  /home/users5/ec385912/ECE527LSP22/ece527l-lab10/fifo/src/iolib.v:13: delays for continuous assignment are ignored. (VER-173)
+Warning:  /home/users5/ec385912/ECE527LSP22/ece527l-lab10/fifo/src/iolib.v:30: delays for continuous assignment are ignored. (VER-173)
+
+Inferred tri-state devices in process
+	in routine I1025_NS line 13 in file
+		'/home/users5/ec385912/ECE527LSP22/ece527l-lab10/fifo/src/iolib.v'.
+============================================
+| Register Name |       Type       | Width |
+============================================
+|   DOUT_tri    | Tri-State Buffer |   1   |
+============================================
+
+Inferred tri-state devices in process
+	in routine D12I1025_NS line 30 in file
+		'/home/users5/ec385912/ECE527LSP22/ece527l-lab10/fifo/src/iolib.v'.
+============================================
+| Register Name |       Type       | Width |
+============================================
+|   PADIO_tri   | Tri-State Buffer |   1   |
+============================================
+Presto compilation completed successfully.
+Current design is now '/home/users5/ec385912/ECE527LSP22/ece527l-lab10/fifo/src/I1025_NS.db:I1025_NS'
+Loaded 2 designs.
+Current design is 'I1025_NS'.
+I1025_NS D12I1025_NS
+read_verilog $SRC/TOP_FIFO.v
+Loading verilog file '/home/users5/ec385912/ECE527LSP22/ece527l-lab10/fifo/src/TOP_FIFO.v'
+Detecting input file type automatically (-rtl or -netlist).
+Reading with Presto HDL Compiler (equivalent to -rtl option).
+Running PRESTO HDLC
+Compiling source file /home/users5/ec385912/ECE527LSP22/ece527l-lab10/fifo/src/TOP_FIFO.v
+Presto compilation completed successfully.
+Current design is now '/home/users5/ec385912/ECE527LSP22/ece527l-lab10/fifo/src/TOP_FIFO.db:TOP_FIFO'
+Loaded 1 design.
+Current design is 'TOP_FIFO'.
+TOP_FIFO
+current_design TOP_FIFO
+Current design is 'TOP_FIFO'.
+{TOP_FIFO}
+link
+
+  Linking design 'TOP_FIFO'
+  Using the following designs and libraries:
+  --------------------------------------------------------------------------
+  * (4 designs)               /home/users5/ec385912/ECE527LSP22/ece527l-lab10/fifo/src/TOP_FIFO.db, etc
+  saed32rvt_tt1p05v25c (library) /opt/ECE_Lib/SAED32_EDK/lib/stdcell_rvt/db_ccs/saed32rvt_tt1p05v25c.db
+
+Information: Building the design 'SRAM1RW1024x8'. (HDL-193)
+Warning: Cannot find the design 'SRAM1RW1024x8' in the library 'WORK'. (LBR-1)
+Warning: Unable to resolve reference 'SRAM1RW1024x8' in 'fifo'. (LINK-5)
+0
+#apply constraints and attributes
+create_clock -period 100 [get_ports CLK]
+Warning: Design 'TOP_FIFO' has '1' unresolved references. For more detailed information, use the "link" command. (UID-341)
+1
+set_clock_uncertainty 1 [get_ports CLK]
+Warning: Design 'TOP_FIFO' has '1' unresolved references. For more detailed information, use the "link" command. (UID-341)
+1
+#compile the design
+compile
+Warning: Design 'TOP_FIFO' has '1' unresolved references. For more detailed information, use the "link" command. (UID-341)
+Loading db file '/opt/ECE_Lib/SAED32_EDK/lib/io_std/db_ccs/saed32io_fc_tt1p05v25c_2p5v.db'
+Loading db file '/opt/ECE_Lib/SAED32_EDK/lib/sram/db_ccs/saed32sram_tt1p05v25c.db'
+Information: Evaluating DesignWare library utilization. (UISN-27)
+
+============================================================================
+| DesignWare Building Block Library  |         Version         | Available |
+============================================================================
+| Basic DW Building Blocks           | O-2018.06-DWBB_201806.1 |     *     |
+| Licensed DW Building Blocks        |                         |           |
+============================================================================
+
+
+Information: There are 148 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
+
+
+  Loading target library 'saed32io_fc_tt1p05v25c_2p5v'
+  Loading target library 'saed32sram_tt1p05v25c'
+
+  Beginning Pass 1 Mapping
+  ------------------------
+  Processing 'fifo'
+Warning: Cell 'U7/U1' (*GEN*15) cannot be exactly translated 1 for 1 into target library.  Ignoring set_compile_directives. (TRANS-9)
+Warning: Cell 'U3/U12' (*GEN*11) cannot be exactly translated 1 for 1 into target library.  Ignoring set_compile_directives. (TRANS-9)
+  Processing 'D12I1025_NS_0'
+  Processing 'I1025_NS_0'
+  Processing 'TOP_FIFO'
+
+  Updating timing information
+Information: Updating design information... (UID-85)
+
+  Beginning Implementation Selection
+  ----------------------------------
+  Processing 'fifo_DW01_dec_0'
+  Processing 'fifo_DW01_inc_0'
+  Processing 'fifo_DW01_inc_1'
+  Processing 'fifo_DW01_inc_2'
+
+  Beginning Mapping Optimizations  (Medium effort)
+  -------------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:01   26459.5      0.00       0.0     112.2                          
+    0:00:01   26459.5      0.00       0.0     112.2                          
+    0:00:01   26459.5      0.00       0.0     112.2                          
+    0:00:01   26459.5      0.00       0.0     112.2                          
+    0:00:01   26459.5      0.00       0.0     112.2                          
+    0:00:01   26427.5      0.00       0.0       0.0                          
+    0:00:01   26427.5      0.00       0.0       0.0                          
+    0:00:01   26427.5      0.00       0.0       0.0                          
+    0:00:01   26415.3      0.00       0.0       0.0                          
+    0:00:01   26415.3      0.00       0.0       0.0                          
+    0:00:01   26415.3      0.00       0.0       0.0                          
+    0:00:01   26415.3      0.00       0.0       0.0                          
+    0:00:01   26415.3      0.00       0.0       0.0                          
+
+
+
+  Beginning Delay Optimization Phase
+  ----------------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:01   26415.3      0.00       0.0       0.0                          
+    0:00:01   26415.3      0.00       0.0       0.0                          
+    0:00:01   26402.1      0.00       0.0       0.0                          
+
+
+  Beginning Area-Recovery Phase  (cleanup)
+  -----------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:01   26402.1      0.00       0.0       0.0                          
+    0:00:01   26402.1      0.00       0.0       0.0                          
+    0:00:01   26400.1      0.00       0.0       0.0                          
+    0:00:01   26397.3      0.00       0.0       0.0                          
+    0:00:01   26397.3      0.00       0.0       0.0                          
+    0:00:01   26397.3      0.00       0.0       0.0                          
+    0:00:01   26397.3      0.00       0.0       0.0                          
+    0:00:01   26397.3      0.00       0.0       0.0                          
+    0:00:01   26394.5      0.00       0.0       0.0                          
+    0:00:01   26394.5      0.00       0.0       0.0                          
+    0:00:01   26394.5      0.00       0.0       0.0                          
+    0:00:01   26394.5      0.00       0.0       0.0                          
+    0:00:01   26394.5      0.00       0.0       0.0                          
+    0:00:01   26394.5      0.00       0.0       0.0                          
+    0:00:01   26394.5      0.00       0.0       0.0                          
+
+
+Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
+
+
+  Optimization Complete
+  ---------------------
+1
+#analye and debug the design
+report_timing > $LOG/ram_test_timing.rpt
+report_area > $LOG/ram_test_area.rpt
+#save design database
+write_file -format ddc -hierarchy -output $MAPPED/ram_test_synthesized.ddc
+Writing ddc file '/home/users5/ec385912/ECE527LSP22/ece527l-lab10/fifo/syn/mapped/ram_test_synthesized.ddc'.
+1
+write_file -format verilog -hierarchy -output $NETLIST/ram_test_netlist.v
+Writing verilog file '/home/users5/ec385912/ECE527LSP22/ece527l-lab10/fifo/syn/netlist/ram_test_netlist.v'.
+1
+#write sdf file
+write_sdf $SYN/sdf_ram_test.sdf
+Information: Annotated 'cell' delays are assumed to include load delay. (UID-282)
+Information: Writing timing information to file '/home/users5/ec385912/ECE527LSP22/ece527l-lab10/fifo/syn/sdf_ram_test.sdf'. (WT-3)
+Information: Updating design information... (UID-85)
+1
+#exit dc shell
+exit
+
+Thank you...

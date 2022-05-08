@@ -1,0 +1,62 @@
+Warning: The trip points for the library named saed32sram_tt1p05v25c differ from those in the library named saed32rvt_tt1p05v25c. (TIM-164)
+Information: Updating design information... (UID-85)
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : TOP_FIFO
+Version: O-2018.06-SP1
+Date   : Sat May  7 20:39:37 2022
+****************************************
+
+Operating Conditions: tt1p05v25c   Library: saed32rvt_tt1p05v25c
+Wire Load Model Mode: enclosed
+
+  Startpoint: comp/count_reg[0]
+              (rising edge-triggered flip-flop clocked by CLK)
+  Endpoint: comp/count_reg[10]
+            (rising edge-triggered flip-flop clocked by CLK)
+  Path Group: CLK
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  TOP_FIFO           35000                 saed32rvt_tt1p05v25c
+  fifo               35000                 saed32rvt_tt1p05v25c
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock CLK (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  comp/count_reg[0]/CLK (DFFX1_RVT)        0.00       0.00 r
+  comp/count_reg[0]/Q (DFFX1_RVT)          0.14       0.14 f
+  comp/U70/Y (OR2X1_RVT)                   0.16       0.31 f
+  comp/U71/Y (OR2X1_RVT)                   0.14       0.45 f
+  comp/U72/Y (OR2X1_RVT)                   0.14       0.59 f
+  comp/U73/Y (OR2X1_RVT)                   0.14       0.73 f
+  comp/U74/Y (OR2X1_RVT)                   0.14       0.87 f
+  comp/U75/Y (OR2X1_RVT)                   0.14       1.01 f
+  comp/U76/Y (OR2X1_RVT)                   0.14       1.15 f
+  comp/U77/Y (NOR2X0_RVT)                  0.12       1.28 r
+  comp/U78/Y (NAND2X0_RVT)                 0.08       1.36 f
+  comp/U79/Y (XNOR2X1_RVT)                 0.18       1.54 f
+  comp/U3/Y (AO222X1_RVT)                  0.10       1.63 f
+  comp/count_reg[10]/D (DFFX1_RVT)         0.05       1.69 f
+  data arrival time                                   1.69
+
+  clock CLK (rise edge)                  100.00     100.00
+  clock network delay (ideal)              0.00     100.00
+  clock uncertainty                       -1.00      99.00
+  comp/count_reg[10]/CLK (DFFX1_RVT)       0.00      99.00 r
+  library setup time                      -0.02      98.98
+  data required time                                 98.98
+  -----------------------------------------------------------
+  data required time                                 98.98
+  data arrival time                                  -1.69
+  -----------------------------------------------------------
+  slack (MET)                                        97.29
+
+
+1
