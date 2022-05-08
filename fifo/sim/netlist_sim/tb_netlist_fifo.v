@@ -65,7 +65,7 @@ localparam WIDTH = 8;
         $finish;
     end
 
-    initial $display("WR: %b, OE: %b, DIN: %h | DOUT: %h, EMPTY: %b, FULL: %b", tb_we_n, tb_oe_n, tb_din, tb_dout, tb_empty, tb_full);
+    initial $monitor("WR: %b, OE: %b, DIN: %h | DOUT: %h, EMPTY: %b, FULL: %b", tb_we_n, tb_oe_n, tb_din, tb_dout, tb_empty, tb_full);
     
     initial $vcdpluson;
 
