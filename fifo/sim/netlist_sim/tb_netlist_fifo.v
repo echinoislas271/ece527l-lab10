@@ -1,6 +1,7 @@
 `include "../../syn/netlist/ram_test_netlist.v"
 
 `default_nettype none
+`timescale  1ns/1ps
 
 module tb_netlist_fifo;
 localparam WIDTH = 8;
