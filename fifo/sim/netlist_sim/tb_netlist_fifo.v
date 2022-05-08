@@ -31,6 +31,11 @@ localparam WIDTH = 8;
         .EMPTY  (tb_empty)
     );
 
+    initial begin
+        $sdf_annotate("../../syn/sdf_ram_test.sdf", uut);
+    end
+
+
     localparam CLK_PERIOD = 100;
     
     initial begin
