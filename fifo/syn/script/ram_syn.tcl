@@ -15,8 +15,8 @@ read_verilog $SRC/TOP_FIFO.v
 link
 
 #apply constraints and attributes
-create_clock -period 100 [get_ports clk]
-set_clock_uncertainty 1 [get_ports clk]
+create_clock -period 100 [get_ports CLK]
+set_clock_uncertainty 1 [get_ports CLK]
 
 #compile the design
 compile
