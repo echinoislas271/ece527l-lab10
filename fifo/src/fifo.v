@@ -35,13 +35,11 @@ always @(posedge clk) begin
     // if reset is asserted reset write pointer and count
     if (!rst_n) begin
         wr_ptr <= 0;
-        count <= 0;
     end
     else begin
         // increment write point and coutner
         if ( !we_n && oe_n && count != RAM_DEPTH) begin
             wr_ptr <= wr_ptr + 1;
-            count <= count + 1;
         end    
     end
     
@@ -57,9 +55,24 @@ always @(posedge clk) begin
         // increment write point and decrement coutner
         if ( we_n && !oe_n && count != 0) begin
             rd_ptr <= rd_ptr + 1;
-            count <= count - 1;
         end
     end
+end
+
+// counter pointer update
+always @(posedge clk) begin
+    // if reset is asserted reset  count
+    if (!rst_n) begin
+        count <= 0;
+    end
+    else begin
+        if ( !we_n && oe_n && count != RAM_DEPTH) begin
+            count <= count + 1;
+        end
+        else if ( we_n && !oe_n && count != 0) begin
+            count <= count - 1;
+        end    
+    end    
 end
 
 // combinational ram address update

@@ -48,7 +48,7 @@ I1025_NS OE_N_PAD (
 genvar  i;
 
 generate
-    for (i = 0; i<8; i = i+1) begin
+    for (i = 0; i<8; i = i+1) begin: DIN_GEN
         I1025_NS DIN_PAD (
             .PADIO  (DIN[i]),
             .DOUT   (din_i[i]),
@@ -72,7 +72,7 @@ D12I1025_NS EMPTY_PAD (
 genvar  j;
 
 generate
-    for (j = 0; j<8; j = j+1) begin
+    for (j = 0; j<8; j = j+1) begin: DOUT_GEN
         D12I1025_NS DOUT_PAD (
             .PADIO(DOUT[j]),
             .DIN(dout_o[j]),
