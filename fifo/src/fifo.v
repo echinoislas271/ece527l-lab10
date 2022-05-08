@@ -23,15 +23,21 @@ reg [9:0] wr_ptr, rd_ptr, address, count;
 
 reg cs_n;
 
+// asigns empty flag based on counter
 assign empty = (count == 0) ? 1: 0;
+
+// asigns full flag based on counter
 assign full = (count == DEPTH-1) ? 1: 0;
 
+// write pointer update
 always @(posedge clk) begin
+    // if reset is asserted reset write pointer and count
     if (!rst_n) begin
         wr_ptr <= 0;
         count <= 0;
     end
     else begin
+        // increment write point and coutner
         if ( !we_n && oe_n && !full) begin
             wr_ptr <= wr_ptr + 1;
             count <= count + 1;
@@ -40,11 +46,14 @@ always @(posedge clk) begin
     
 end
 
+// read pointer update
 always @(posedge clk) begin
+    // if reset is asserted reset read pointer
     if (!rst_n) begin
-        rd_ptr <= 0    ;
+        rd_ptr <= 0;
     end
     else begin
+        // increment write point and decrement coutner
         if ( we_n && !oe_n && !empty) begin
             rd_ptr <= rd_ptr + 1;
             count <= count - 1;
@@ -52,21 +61,20 @@ always @(posedge clk) begin
     end
 end
 
+// combinational ram address update
 always @(*) begin
     if (!oe_n) begin
         address = rd_ptr;
-        cs_n = 0;
     end
     else if (!we_n) begin
         address = wr_ptr;
-        cs_n = 0;
     end
     else begin
         address = 0;
-        cs_n = 1;
     end
 end
 
+// combinational ram chip select update
 always @(*) begin
     if (we_n && !oe_n && !empty || !we_n && oe_n && !full) cs_n <= 0;
     else cs_n <= 1;
