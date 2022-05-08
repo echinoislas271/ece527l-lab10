@@ -12,6 +12,10 @@ set_svf $GUIDE/ram_test.svf
 
 #read in the entire design
 read_verilog $SRC/TOP_FIFO.v
+read_verilog $SRC/iolib.v
+read_verilog /opt/ECE_Lib/SAED32_EDK/lib/stdcell_rvt/verilog/saed32nm.v
+read_verilog /opt/ECE_Lib/SAED32_EDK/lib/sram/verilog/saed32sram.v
+
 link
 
 #apply constraints and attributes
