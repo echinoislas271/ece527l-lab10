@@ -3,8 +3,8 @@
 module fifo #(
 
 parameter WIDTH = 8,
-parameter DEPTH = 1024
-
+parameter ADDR_WIDTH = 10,
+parameter RAM_DEPTH = (1 << ADDR_WIDTH)
 )( 
 
 input clk,
@@ -19,7 +19,8 @@ output empty
 
 );
 
-reg [9:0] wr_ptr, rd_ptr, address, count;
+reg [ADDR_WIDTH-1:0] wr_ptr, rd_ptr, address;
+reg [ADDR_WIDTH:0] count;
 
 reg cs_n;
 
@@ -27,7 +28,7 @@ reg cs_n;
 assign empty = (count == 0) ? 1: 0;
 
 // asigns full flag based on counter
-assign full = (count == DEPTH-1) ? 1: 0;
+assign full = (count == RAM_DEPTH-1) ? 1: 0;
 
 // write pointer update
 always @(posedge clk) begin
@@ -38,7 +39,7 @@ always @(posedge clk) begin
     end
     else begin
         // increment write point and coutner
-        if ( !we_n && oe_n && !full) begin
+        if ( !we_n && oe_n && count != RAM_DEPTH) begin
             wr_ptr <= wr_ptr + 1;
             count <= count + 1;
         end    
@@ -54,7 +55,7 @@ always @(posedge clk) begin
     end
     else begin
         // increment write point and decrement coutner
-        if ( we_n && !oe_n && !empty) begin
+        if ( we_n && !oe_n && count != 0) begin
             rd_ptr <= rd_ptr + 1;
             count <= count - 1;
         end
@@ -74,9 +75,9 @@ always @(*) begin
     end
 end
 
-// combinational ram chip select update
+// combinational ram chip select
 always @(*) begin
-    if (we_n && !oe_n && !empty || !we_n && oe_n && !full) cs_n <= 0;
+    if (we_n && !oe_n && count != 0 || !we_n && oe_n && count != RAM_DEPTH) cs_n <= 0;
     else cs_n <= 1;
 end
 

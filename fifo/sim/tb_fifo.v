@@ -1,18 +1,19 @@
 module tb_fifo;
+    localparam WIDTH = 8;
+    localparam RAM_DEPTH = 1024;
 
-    reg [7:0] ram_contents_wr [1023:0];
-    reg [7:0] ram_contents_rd [1024:0];
-    reg [7:0] ram_addresses [1024:0];
+    reg [WIDTH-1:0] ram_contents_wr [RAM_DEPTH-1:0];
+    reg [WIDTH-1:0] ram_contents_rd [RAM_DEPTH:0];
 
-    reg             tb_clk;
-    reg             tb_rst_n;
-    reg             tb_we_n;
-    reg             tb_oe_n;
-    reg     [7:0]   tb_din;
+    reg                 tb_clk;
+    reg                 tb_rst_n;
+    reg                 tb_we_n;
+    reg                 tb_oe_n;
+    reg     [WIDTH-1:0] tb_din;
 
-    wire    [7:0]   tb_dout;
-    wire            tb_full;
-    wire            tb_empty;
+    wire    [WIDTH-1:0] tb_dout;
+    wire                tb_full;
+    wire                tb_empty;
 
     FIFO_TOP uut
     ( 
@@ -44,8 +45,8 @@ module tb_fifo;
 
     initial begin
         #(CLK_PERIOD + CLK_PERIOD/4) tb_rst_n <= 1;
-        for (i = 0;i < ( (1024*2) + 50) ;i = i + 1 ) begin
-            if (i < 1030) begin
+        for (i = 0; i < ( (RAM_DEPTH*2) + 50); i = i + 1 ) begin
+            if (i < RAM_DEPTH+6) begin
                 #(CLK_PERIOD) tb_din <= i;
                 tb_we_n <= 0;
             end
@@ -67,6 +68,9 @@ module tb_fifo;
         $finish;
 
     end
+    initial begin
+       $monitor("WP: %h, RD: %h, COUNT: %h, DIN: %h, DOUT: %h\n", uut.comp.wr_ptr, uut.comp.rd_ptr, uut.comp.count, uut.comp.din, uut.comp.dout); 
+    end
 
     always @(posedge tb_clk) begin
         if (!tb_we_n && tb_oe_n && !uut.comp.cs_n) begin
@@ -74,10 +78,8 @@ module tb_fifo;
         end
     end
 
-    always @(posedge tb_clk) begin
-        if (tb_we_n && !tb_oe_n && !uut.comp.cs_n) begin
-            ram_contents_rd[uut.comp.rd_ptr] <= tb_dout;
-        end
+    always @(tb_dout) begin
+        ram_contents_rd[uut.comp.rd_ptr] <= tb_dout;
     end
 
 `ifdef iverilog
