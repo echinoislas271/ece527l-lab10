@@ -3,4 +3,3 @@
 echo "Running VCS simulation"
 which vcs
 vcs -full64 -v2005  tb_netlist_fifo.v -v /opt/ECE_Lib/SAED32_EDK/lib/stdcell_rvt/verilog/saed32nm.v -v  /opt/ECE_Lib/SAED32_EDK/lib/sram/verilog/saed32sram.v -debug_pp +neg_tchk -negdelay
-simv -l sim_netlist.log
