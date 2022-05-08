@@ -62,13 +62,10 @@ localparam WIDTH = 8;
                 #(CLK_PERIOD) tb_oe_n <= 0;
             end
         end
-
+        $finish;
     end
 
-    // always @(tb_dout) begin
-    //     $display("WR: %b, OE: %b | DOUT: %h, EMPTY: %b, FULL: %b", tb_we_n, tb_oe_n, tb_dout, tb_empty, tb_full);    
-    // end
-    
+    initial $display("WR: %b, OE: %b, DIN: %h | DOUT: %h, EMPTY: %b, FULL: %b", tb_we_n, tb_oe_n, tb_din, tb_dout, tb_empty, tb_full);
     
     initial $vcdpluson;
 
