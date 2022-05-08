@@ -7,9 +7,6 @@ module tb_netlist_fifo;
 localparam WIDTH = 8;
     localparam RAM_DEPTH = 1024;
 
-    reg [WIDTH-1:0] ram_contents_wr [RAM_DEPTH-1:0];
-    reg [WIDTH-1:0] ram_contents_rd [RAM_DEPTH:0];
-
     reg                 tb_clk;
     reg                 tb_rst_n;
     reg                 tb_we_n;
@@ -65,32 +62,10 @@ localparam WIDTH = 8;
                 #(CLK_PERIOD) tb_oe_n <= 0;
             end
         end
-        
-        write_data = $fopen("./ram_test.txt");
-
-        $fdisplay(write_data, "- (Pass) *** (Fail)\n");
-        $fdisplay(write_data, "Address\t\t\t\tWrite\t|\tRead\t||\tStatus\n");
-        for (j = 0; j < 1024; j = j + 1 ) begin
-            $fdisplay(write_data, "%3h:\t\t\t%x\t\t|\t\t%x\t||\t%s\n", j, ram_contents_wr[j], ram_contents_rd[j+1], (ram_contents_wr[j] === ram_contents_rd[j+1]) ? "-": "***");
-        end
-
-        $fclose(write_data);
-        $finish;
 
     end
-    initial begin
-       $monitor("WP: %h, RD: %h, COUNT: %h, DIN: %h, DOUT: %h\n", uut.comp.wr_ptr, uut.comp.rd_ptr, uut.comp.count, uut.comp.din, uut.comp.dout); 
-    end
 
-    always @(posedge tb_clk) begin
-        if (!tb_we_n && tb_oe_n && !uut.comp.cs_n) begin
-            ram_contents_wr[uut.comp.wr_ptr] <= tb_din;
-        end
-    end
-
-    always @(tb_dout) begin
-        ram_contents_rd[uut.comp.rd_ptr] <= tb_dout;
-    end
+    initial $monitor("WR: %b, OE: %b, DIN: %h | DOUT: %h, EMPTY: %b, FULL: %b", tb_we_n, tb_oe_n, tb_din, tb_dout, tb_empty, tb_full);
     
     initial $vcdpluson;
 
