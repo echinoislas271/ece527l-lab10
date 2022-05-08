@@ -15,7 +15,7 @@ module tb_fifo;
     wire                tb_full;
     wire                tb_empty;
 
-    FIFO_TOP uut
+    TOP_FIFO uut
     ( 
         .CLK    (tb_clk),
         .RST_N  (tb_rst_n),
